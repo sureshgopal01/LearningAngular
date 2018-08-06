@@ -1,228 +1,239 @@
 <div class="col-md-offset-3 col-md-6">
-    <div class="widget-box">
-        <div class="widget-header">
-            <div class="note note-success">
-                <h3>Create Extraction</h3>
-            </div>
-        </div>
-    </div>
+  <div class="widget-box">
+      <div class="widget-header">
+          <div class="note note-success">
+              <h3>Create Extraction</h3>
+          </div>
+      </div>
+  </div>
 </div>
 <div class="col-md-12" id="extractionDiv">
-    <div class="form-group">
-        <label for="name">Name :</label>&nbsp;
-        <input type="text" id="name" ng-model="mappingName" placeholder="Extraction name" [disabled]="disableDestination" />
-    </div>
-    <br>
+  <div class="form-group">
+      <label for="name">Name :</label>&nbsp;
+      <input type="text" id="name" ng-model="mappingName" placeholder="Extraction name" [disabled]="disableDestination" />
+  </div>
+  <br>
 
-    <div id="ui-view" data-select2-id="ui-view">
-        <div data-select2-id="14">
-            <!-- <link href="vendors/bootstrap-daterangepicker/css/daterangepicker.min.css" rel="stylesheet"> -->
+  <div id="ui-view" data-select2-id="ui-view">
+      <div data-select2-id="14">
+          <!-- <link href="vendors/bootstrap-daterangepicker/css/daterangepicker.min.css" rel="stylesheet"> -->
 
-            <div class="animated fadeIn" data-select2-id="13">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="icon-note"></i> Source
-                            </div>
-                            <div class="card-body">
-                                <form class="form-horizontal form-row-seperated">
-                                    <div class="form-body">
-                                        <div class="form-group">
-                                            <!-- <label class="control-label col-md-4" for="Datasource1">Data Store :</label> -->
-                                            <label class="control-label col-md-4">Data Store :</label>
-                                            <div class="col-md-4">
-                                                <select class="bs-select form-control" required="true" (change)="onSrcConnChange($event)">
-                                                    <option value="default">Choose your Data Store</option>
-                                                    <option *ngFor="let connection of connections" [value]="connection.id">{{connection.dataSourceType}}/{{connection.name}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
+          <div class="animated fadeIn" data-select2-id="13">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="card">
+                          <div class="card-header">
+                              <i class="icon-note"></i> Source
+                          </div>
+                          <div class="card-body">
+                              <form class="form-horizontal form-row-seperated">
+                                  <div class="form-body">
+                                      <div class="form-group">
+                                          <!-- <label class="control-label col-md-4" for="Datasource1">Data Store :</label> -->
+                                          <label class="control-label col-md-4">Data Store :</label>
+                                          <div class="col-md-4">
+                                              <select class="bs-select form-control" required="true" (change)="onSrcConnChange($event)">
+                                                  <option value="default">Choose your Data Store</option>
+                                                  <option *ngFor="let connection of connections" [value]="connection.id">{{connection.dataSourceType}}/{{connection.name}}</option>
+                                              </select>
+                                          </div>
+                                      </div>
 
-                                        <div class="form-group" *ngIf="dataSource1_isChosen === true">
-                                            <label class="control-label col-md-4" for="tables1">Tables
-                                            </label>
-                                            <select class="bs-select form-control" name="tableNameSelected1" ng-model="tableNameSelected1" (change)="onSrcTableChange($event)"
-                                                id="tables1">
-                                                <option value="default">Choose Table</option>
-                                                <option *ngFor="let table of tables1" [value]="table.name">{{table.name}}</option>
-                                            </select>
-                                        </div>
+                                      <div class="form-group" *ngIf="dataSource1_isChosen === true">
+                                          <label class="control-label col-md-4" for="tables1">Tables
+                                          </label>
+                                          <select class="bs-select form-control" name="tableNameSelected1" ng-model="tableNameSelected1" (change)="onSrcTableChange($event)"
+                                              id="tables1">
+                                              <option value="default">Choose Table</option>
+                                              <option *ngFor="let table of tables1" [value]="table.name">{{table.name}}</option>
+                                          </select>
+                                      </div>
 
-                                        <!-- Data source table columns -->
-                                        <div class="form-group" *ngIf="dataSource1_isChosen === true">
-                                            <label class="control-label col-md-4" for="tables1Columns">Table Columns
-                                            </label>
-                                            <table class="table table-striped table-bordered  no-footer" id="src_column_1" role="grid" aria-describedby="src_column_1_info"
-                                                style="border-collapse: collapse !important">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th tabindex="0">
-                                                            <input id="selectAll" name="selectAll" value="selectAll" type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll();">
-                                                        </th>
-                                                        <th tabindex="0">
-                                                            Columns
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr role="row" class="odd"></tr>
-                                                    <tr *ngFor="let column of tables1Columns">
-                                                        <td>
-                                                            <input id="column.id" name="selectAll" value="selectAll" type="checkbox"
-                                                                [(ngModel)]="column.selected" (change)="checkIfAllSelected();">
-                                                        </td>
-                                                        <td>{{column.name}}</td>
-                                                    </tr>
+                                      <!-- Data source table columns -->
+                                      <div class="form-group" *ngIf="dataSource1_isChosen === true">
+                                          <label class="control-label col-md-4" for="tables1Columns">Table Columns
+                                          </label>
+                                          <table class="table table-striped table-bordered  no-footer" id="src_column_1" role="grid" aria-describedby="src_column_1_info"
+                                              style="border-collapse: collapse !important">
+                                              <thead>
+                                                  <tr role="row">
+                                                      <th tabindex="0">
+                                                          <input id="selectAll" name="selectAll" value="selectAll" type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll();">
+                                                      </th>
+                                                      <th tabindex="0">
+                                                          Columns
+                                                      </th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr role="row" class="odd"></tr>
+                                                  <tr *ngFor="let column of tables1Columns ; let i = index">
+                                                      <td>
+                                                          <input id="table1Column" name="table1Column" type="checkbox"
+                                                              [(ngModel)]="column.selected"
+                                                              (ngModelChange) ="onItemSelect(i, $event);"
+                                                              (change)="checkIfAllSelected();"
+                                                              >
+                                                      </td>
+                                                      <td>{{column.name}}</td>
+                                                  </tr>
+                                                  <!-- (change)="checkIfAllSelected();"
 
-                                                </tbody>
-                                            </table>
+                                                  [checked]="table1Column" -->
+                                              </tbody>
+                                          </table>
 
-                                            <div class="col-md-2">
+                                          <div class="col-md-2">
 
-                                                <i class="fa fa-plus-circle btnplus bigger-250" ng-click="showColumnsFromTables1()"></i>
+                                              <i class="fa fa-plus-circle btnplus bigger-250" ng-click="showColumnsFromTables1()"></i>
 
-                                            </div>
-                                        </div>
+                                          </div>
+                                      </div>
 
-                                        <div class="form-group" ng-if="buttonPlus1clicked==1" *ngFor="let table of tableNameSelected1" ng-show="showTablesDiv">
-                                            <div class="col-md-offset-2 col-md-7">
-                                                <table class="table table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
+                                      <div class="form-group" ng-if="buttonPlus1clicked==1" *ngFor="let table of tableNameSelected1" ng-show="showTablesDiv">
+                                          <div class="col-md-offset-2 col-md-7">
+                                              <table class="table table-bordered table-hover">
+                                                  <thead>
+                                                      <tr>
 
-                                                            <th>{{table}}</th>
+                                                          <th>{{table}}</th>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let column of columnTables1[$parent.$index]" ng-click="saveColumnFromTables1(column,table)">
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      <tr *ngFor="let column of columnTables1[$parent.$index]" ng-click="saveColumnFromTables1(column,table)">
 
-                                                            <td> {{column.name}}</td>
+                                                          <td> {{column.name}}</td>
 
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
 
-                                        <div align="center" ng-show="dataSource1_isChosen==1">
-                                            <i class="btn btn-primary" onclick="showJoinModal()">
-                                                <span class="fa fa-plus-circle btnplus align-top bigger-125"> </span>
-                                                Add Join
-                                            </i>
-                                            <i class="btn btn-primary" ng-click="addFilter()">
-                                                <span class="fa fa-plus-circle btnplus align-top bigger-125"> </span>
-                                                Add Filter
-                                            </i>
-                                        </div>
-                                        <br>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                      <div align="center" ng-show="dataSource1_isChosen==1">
+                                          <i class="btn btn-primary" onclick="showJoinModal()">
+                                              <span class="fa fa-plus-circle btnplus align-top bigger-125"> </span>
+                                              Add Join
+                                          </i>
+                                          <i class="btn btn-primary" ng-click="addFilter()">
+                                              <span class="fa fa-plus-circle btnplus align-top bigger-125"> </span>
+                                              Add Filter
+                                          </i>
+                                      </div>
+                                      <br>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
 
-                    <div class="col-md-6" data-select2-id="12">
-                        <div class="card" data-select2-id="11">
-                            <div class="card-header">
-                                <i class="icon-note"></i> Destination
-                            </div>
-                            <div class="card-body" data-select2-id="10">
-                                <form class="form-horizontal form-row-seperated">
-                                    <div class="form-body">
-                                        <div class="form-group">
-                                            <!-- <label class="control-label col-md-4" for="Datasource1">Data Store :</label> -->
-                                            <label class="control-label col-md-4">Data Store :</label>
-                                            <div class="col-md-4">
-                                                <select class="bs-select form-control" required="true" (change)="onSrcConnChange($event)">
-                                                    <option value="default">Choose your Data Store</option>
-                                                    <option *ngFor="let connection of connections" [value]="connection.id">{{connection.dataSourceType}}/{{connection.name}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                  <div class="col-md-6" data-select2-id="12">
+                      <div class="card" data-select2-id="11">
+                          <div class="card-header">
+                              <i class="icon-note"></i> Destination
+                          </div>
+                          <div class="card-body" data-select2-id="10">
+                              <form class="form-horizontal form-row-seperated">
+                                  <div class="form-body">
+                                      <div class="form-group">
+                                          <!-- <label class="control-label col-md-4" for="Datasource1">Data Store :</label> -->
+                                          <label class="control-label col-md-4">Data Store :</label>
+                                          <div class="col-md-4">
+                                              <select class="bs-select form-control" required="true" (change)="onSrcConnChange($event)">
+                                                  <option value="default">Choose your Data Store</option>
+                                                  <option *ngFor="let connection of connections" [value]="connection.id">{{connection.dataSourceType}}/{{connection.name}}</option>
+                                              </select>
+                                          </div>
+                                      </div>
 
-                                        <div class="form-group" *ngIf="dataSource1_isChosen === true">
-                                            <label class="control-label col-md-4" for="tables1">Tables
-                                            </label>
-                                            <select class="bs-select form-control" name="tableNameSelected1" ng-model="tableNameSelected1" (change)="onSrcTableChange($event)"
-                                                id="tables1">
-                                                <option *ngFor="let table of tables1" [value]="table.name">{{table.name}}</option>
-                                            </select>
-                                        </div>
+                                      <div class="form-group" *ngIf="dataSource1_isChosen === true">
+                                          <label class="control-label col-md-4" for="tables1">Tables
+                                          </label>
+                                          <select class="bs-select form-control" name="tableNameSelected1" ng-model="tableNameSelected1" (change)="onSrcTableChange($event)"
+                                              id="tables1">
+                                              <option *ngFor="let table of tables1" [value]="table.name">{{table.name}}</option>
+                                          </select>
+                                      </div>
 
-                                        <div class="form-group">
+                                      <div class="form-group">
 
-                                            <div class="checkbox col-md-offset-2 col-md-3">
-                                                <label for="checkBox">
-                                                    <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="createNewTable()" ng-model="checkBoxModel" id="checkBox"
-                                                    [(ngModel)]="selectedAll" (change)="selectAll();" ng-show="showCreateTableBox" />
-                                                    <span class="lbl"> &nbsp;Create new table</span>
-                                                </label>
-                                            </div>
-                                        </div>
+                                          <div class="checkbox col-md-offset-2 col-md-3">
+                                              <label for="checkBox">
+                                                  <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="createNewTable()" ng-model="checkBoxModel" id="checkBox"
+                                                  [(ngModel)]="selectedAll" (change)="selectAll();" ng-show="showCreateTableBox" />
+                                                  <span class="lbl"> &nbsp;Create new table</span>
+                                              </label>
+                                          </div>
+                                      </div>
 
-                                        <div class="form-group" *ngIf="checkBoxModel === true">
-                                            <div class="col-md-offset-2 col-md-4">
-                                                <div class="mdl-textfield mdl-js-textfield">
-                                                    <input class="mdl-textfield__input tableNameStyle" type="text" id="sample1" placeholder="Table name" ng-model="newtableName"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
+                                      <div class="form-group" *ngIf="checkBoxModel === true">
+                                          <div class="col-md-offset-2 col-md-4">
+                                              <div class="mdl-textfield mdl-js-textfield">
+                                                  <input class="mdl-textfield__input tableNameStyle" type="text" id="sample1" placeholder="Table name" ng-model="newtableName"
+                                                  />
+                                              </div>
+                                          </div>
+                                      </div>
 
-                                        <!-- IMPORT OPTION DIV -->
-                                        <div class="form-group">
-                                            <div class="control-group col-md-offset-2 col-md-3">
-                                                <label class="control-label bolder blue">Import option</label>
+                                      <!-- IMPORT OPTION DIV -->
+                                      <div class="form-group">
+                                          <div class="control-group col-md-offset-2 col-md-3">
+                                              <label class="control-label bolder blue">Import option</label>
 
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="form-field-radio" type="radio" class="ace" value="INSERT" ng-model="importOption" checked="true" />
-                                                        <span class="lbl"> INSERT </span>
-                                                    </label>
-                                                </div>
+                                              <div class="radio">
+                                                  <label>
+                                                      <input name="form-field-radio" type="radio" class="ace" value="INSERT" ng-model="importOption" checked="true" />
+                                                      <span class="lbl"> INSERT </span>
+                                                  </label>
+                                              </div>
 
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="form-field-radio" type="radio" class="ace" value="TRUNCATE_INSERT" ng-model="importOption" />
-                                                        <span class="lbl"> TRUNCATE INSERT </span>
-                                                    </label>
-                                                </div>
+                                              <div class="radio">
+                                                  <label>
+                                                      <input name="form-field-radio" type="radio" class="ace" value="TRUNCATE_INSERT" ng-model="importOption" />
+                                                      <span class="lbl"> TRUNCATE INSERT </span>
+                                                  </label>
+                                              </div>
 
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="form-field-radio" type="radio" class="ace" value="DROP_INSERT" ng-model="importOption" />
-                                                        <span class="lbl"> DROP INSERT </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                              <div class="radio">
+                                                  <label>
+                                                      <input name="form-field-radio" type="radio" class="ace" value="DROP_INSERT" ng-model="importOption" />
+                                                      <span class="lbl"> DROP INSERT </span>
+                                                  </label>
+                                              </div>
+                                          </div>
+                                      </div>
 
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
 
-                </div>
+              </div>
 
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 
-    <div align="left" ng-show="showFlowChartDiv" style="padding-bottom: 30px">
-        <i class="btn btn-primary" onclick="deleteSelectedElement()">
-            <span class="fa fa-trash-o align-center bigger-125"> </span>
-            Delete selected Table/Link
-        </i>
-    </div>
+  <div align="left" ng-show="showFlowChartDiv" style="padding-bottom: 30px">
+      <i class="btn btn-primary" onclick="deleteSelectedElement()">
+          <span class="fa fa-trash-o align-center bigger-125"> </span>
+          Delete selected Table/Link
+      </i>
+  </div>
 
-    <div class="pull-right">
-        <div class="col-md-offset-11 col-md-1">
-            <button class="btn btn-app btn-primary btn-xs" ng-click="saveMapping()">
-                <i class="fa fa-save bigger-150"></i>
-                Save
-            </button>
-        </div>
-    </div>
+  <div align="left" style="padding-bottom: 30px" class = "selectedColumns1">
+    <h3>Source Selected Columns</h3>
+    <p *ngFor="let column of tables1SelectedColumns">{{column.name}}</p>
+
+</div>
+
+  <div class="pull-right">
+      <div class="col-md-offset-11 col-md-1">
+          <button class="btn btn-app btn-primary btn-xs" ng-click="saveMapping()">
+              <i class="fa fa-save bigger-150"></i>
+              Save
+          </button>
+      </div>
+</div>
